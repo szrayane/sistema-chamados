@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seja Bem Vindo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+
+ body {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background: linear-gradient(to right, #FFC0CB, #FF69B4);
+  }
+
+section {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+background-color: linear-gradient(to bottom, #f1f4f9, #dff1ff);
+}
+
+.container {
+position: relative;
+width: 40vw;
+min-height: 400px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+backdrop-filter: blur(5px);
+box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+border: 1px solid rgba(255, 255, 255, 0.5);
+border-right: 1px solid rgba(255, 255, 255, 0.2);
+border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body{
+background: linear-gradient(to right, #FFC0CB, #FF69B4);
+text-align:center;
+}
+
+
+h1 {
+font-family: "Montserrat", sans-serif;
+font-optical-sizing: auto;
+font-weight: 500;
+font-style: normal;
+text-align:center;
+}
+
+}
+
+.titulo-montserrat {
+font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+}
+
+.continue-button button a {
+text-decoration: none;
+font-size: 0.93rem;
+font-weight: 500;
+color: #fff;
+}
+
+.btn{
+font-family: "Montserrat", sans-serif;
+font-optical-sizing: auto;
+font-weight: 800;
+font-style: normal;
+width: 15vw;
+padding: 12px 15px;
+background-color: #FF69B4;
+color: #fff;
+border: none;
+border-radius: 5px;
+font-weight: bold;
+font-size: 17px;
+cursor: pointer;
+margin: 0.5vh;
+}
+    </style>
+</head>
+<body class="titulo-montserrat">
+<section>
+    <div class="box">
+        <div class="square" style="--i:0;"></div>
+        <div class="square" style="--i:1;"></div>
+        <div class="square" style="--i:2;"></div>
+        <div class="square" style="--i:3;"></div>
+        <div class="square" style="--i:4;"></div>
+        <div class="container">
+            <div class="form">
+                <center>
+                    <h1>Bem-vindo!</h1>
+                </center>
+                <br> <br>
+                <center>
+                    <table border="0">
+                        <td align="right">
+                        <td align="right">
+                            <form action="/login" method="get">
+                                <button class="btn" type="submit">Acessar como Usuário</button>
+                            </form>
+                        </td>
+                        </td>
+                        <td align="right">
+                            <form action="/login" method="get">
+                                <button class="btn" type="submit">Acessar como Técnico</button>
+                            </form>
+                        </td>
+                    </table>
+                </center>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

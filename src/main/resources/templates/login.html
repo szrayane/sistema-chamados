@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+body {
+ background: linear-gradient(to right, #FFC0CB, #FF69B4);
+ display: block;
+}
+
+h2 {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 800;
+ font-style: normal;
+ text-align: left;
+}
+h3{
+font-family: "Montserrat", sans-serif;
+font-optical-sizing: auto;
+font-weight: 800;
+font-style: normal;
+text-align: center;
+}
+.container {
+width: 450%;
+min-height: 50vh;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 40px;
+background: rgba(255, 255, 255, 0.1);
+border-radius: 30px;
+position:absolute;
+left:50%;
+top:50%;
+transform: translate(-50%,-50%);
+}
+
+form {
+position:absolute;
+left:50%;
+top:50%;
+transform: translate(-50%,-50%);
+padding: 30px 50px;
+}
+
+input[type=text],
+input[type=email],
+input[type=password]{
+border: 0;
+border-bottom: 1px solid #ffffff;
+background: transparent;
+width: 100%;
+padding: 8px 0 5px 0;
+font-size: 16px;
+pointer-event:none;
+transition: all 0.5s ease-in-out;
+           }
+
+
+.container input:focus{
+border:none;
+outline:none;
+border-bottom:1px solid #e74c3c;
+ }
+
+ .container label{
+ font-family: "Montserrat", sans-serif;
+ border: box-block;
+ margin-right: 10px;
+ }
+
+.butt {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 500;
+ font-style: normal;
+ text-transform: uppercase;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 10px 10px;
+ padding: 20px 20px;
+ width: 50%;
+ height: 40px;
+}
+
+.butt_login {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 500;
+ font-style: normal;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ margin: 0 auto;
+ padding: 20px 40px;
+ width: 50%;
+ }
+
+.butt_login {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 800;
+ font-style: normal;
+ width: 10vw;
+ padding: 12px 15px;
+ background-color: #FF69B4;
+ color: #fff;
+ border: none;
+ border-radius: 5px;
+ font-weight: bold;
+ font-size: 17px;
+ cursor: pointer;
+ margin-bottom: 1em;
+}
+
+a{
+text-decoration: none;
+color: white;
+}
+    </style>
+</head>
+<body>
+<form th:action="@{/login}" method="post">
+    <div class="container">
+        <h2>Login</h2>
+        <div class="email">
+            <input name="username" type="text" placeholder="Email" id="+">
+        </div>
+        <div class="senha">
+            <input name="password" type="password" placeholder="Password">
+        </div>
+        <div>
+            <input type="submit" value="Log in" class="butt_login">
+            <a href="/cadastro-cliente">Sou cliente - Não tenho cadastro</a>
+            <div th:if="${param.error}">
+                <p style="color: red;">Usuário ou senha inválidos.</p>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

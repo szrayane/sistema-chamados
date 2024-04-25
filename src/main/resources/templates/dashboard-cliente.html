@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard do Usuário</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+       body {
+       background: linear-gradient(to right, #FFC0CB, #FF69B4);
+       display: block;
+}
+.container-tabela {
+display: flex;
+flex-direction: column;
+}
+
+h1{
+font-size: 3rem;
+text-align: center;
+}
+
+h2{
+font-size: 2rem;
+margin-left: 1vw;
+}
+       table {
+   font-family: "Montserrat", sans-serif;
+   font-optical-sizing: auto;
+   width: 80vw;
+   border-collapse: collapse;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0,0,0,0.1);
+   }
+
+   th {
+       font-size: 0.8rem;
+       color: white;
+       background-color: #b30059;
+       text-align: center;
+       line-height: 2;
+   }
+
+td {
+   padding: 1rem;
+   background-color: rgba(255,255,255,0.2);
+}
+
+#pai-buttons{
+ display: flex;
+ margin: 1vw;
+}
+
+.filhos-buttons{
+ padding: 1.5vw;
+        }
+
+.filhos-buttons button{
+width: 11vw;
+height: 5vh;
+background-color: #b30059;
+color: white;
+font-weight: 700;
+border: none;
+border-radius: 10px;
+&:hover {
+    background-color:white;
+    color: #b30059;
+    cursor: pointer;
+  }
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>Bem-vindo, <span th:text="${name}"></span>!</h1>
+
+<div class="container-tabela">
+    <h2>Meus Tickets</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Número do chamado</th>
+            <th>Descrição</th>
+            <th>Departamento</th>
+            <th>Status</th>
+            <th>Prioridade</th>
+            <th>Data de Criação</th>
+            <th>Última Atualização</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket : ${tickets}">
+            <td th:text="${ticket.ticketId}"></td>
+            <td th:text="${ticket.description}"></td>
+            <td th:text="${ticket.department}"></td>
+            <td th:text="${ticket.status.description}"></td>
+            <td th:text="${ticket.getPriority()}"></td>
+            <td th:text="${#dates.format(ticket.creationTimestamp, 'dd/MM/yyyy HH:mm:ss')}"></td>
+            <td th:text="${#dates.format(ticket.updatedTimestamp, 'dd/MM/yyyy HH:mm:ss')}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div id="pai-buttons">
+        <div class="filhos-buttons">
+            <form action="/criar-chamado" method="get">
+                <button type="submit">Criar Novo Chamado</button>
+            </form>
+        </div>
+        <div class="filhos-buttons">
+            <form action="/logout" method="post">
+                <button type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

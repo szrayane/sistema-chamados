@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+ body {
+  background: linear-gradient(to right, #FFC0CB, #FF69B4);
+  display: block;
+ }
+
+ h2 {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 800;
+ font-style: normal;
+ text-align: center;
+ margin-top: 2em;;
+   }
+
+ .container {
+  width: 450%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+ }
+
+ form {
+ position:absolute;
+ left:50%;
+ top:50%;
+ transform: translate(-50%,-50%);
+ padding: 30px 50px;
+ }
+
+ input[type=text],
+ input[type=email],
+ input[type=password]{
+ border: 0;
+ border-bottom: 1px solid #ffffff;
+ background: transparent;
+ width: 100%;
+ padding: 8px 0 5px 0;
+ font-size: 16px;
+ pointer-event:none;
+ transition: all 0.5s ease-in-out;
+ }
+
+ .container input:focus{
+ border:none;
+ outline:none;
+ border-bottom:1px solid #e74c3c;
+ }
+
+ .container label{
+ font-family: "Montserrat", sans-serif;
+ border: box-block;
+ margin-right: 10px;
+ }
+
+ .butt {
+font-family: "Montserrat", sans-serif;
+font-optical-sizing: auto;
+font-weight: 500;
+font-style: normal;
+line-height: 1.2;
+text-transform: uppercase;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px 20px;
+width: 15vw;
+height: 40px;
+background-color: #FF69B4;
+color: #fff;
+border: none;
+border-radius: 10px;
+cursor: pointer;
+ }
+
+ p{
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 400;
+ font-style: italic;
+ align-text: center;
+ }
+
+ a{
+text-decoration: none;
+color: white;
+font-size: 1.2rem;
+margin-bottom: 1em;
+}
+
+    </style>
+</head>
+<body>
+<form th:action="@{/cadastro-cliente}" th:object="${client}" method="post">
+    <div class="container">
+        <h2>Cadastro</h2>
+        <div id="username">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" th:field="*{name}" required>
+        </div>
+        <div id="emeio">
+            <label for="email">Email:</label>
+            <input type="email" id="email" th:field="*{email}" required>
+        </div>
+        <div id="senha">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" th:field="*{password}" required>
+        </div>
+        <div id="end">
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" th:field="*{endereco}" required>
+        </div>
+        <div>
+            <button class="butt" type="submit">Cadastrar</button>
+        </div>
+        <a href="/login">Login</a>
+        <div th:if="${param.error}">
+            <p style="color: red;">Email já cadastrado.</p>
+        </div>
+    </div>
+</form>
+</body>
+</html>

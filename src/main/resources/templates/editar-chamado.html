@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Chamado</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,300&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
+
+ body {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 800;
+ font-style: normal;
+ width: 100%;
+ height: 100vh;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ background: linear-gradient(to right, #FFC0CB, #FF69B4);
+ margin: 0;
+ padding: 0;
+ }
+
+ .container {
+ position: relative;
+ width: 40vw;
+ min-height: 60vh;
+ background: rgba(255, 255, 255, 0.1);
+ border-radius: 10px;
+ display: flex;
+ flex-direction: column;
+ backdrop-filter: blur(5px);
+ box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+ border: 1px solid rgba(255, 255, 255, 0.5);
+ border-right: 1px solid rgba(255, 255, 255, 0.2);
+ border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+ padding: 20px;
+ }
+
+h1 {
+ text-align: center;
+ }
+
+label {
+font-weight: bold;
+display: block;
+}
+
+label span{
+ font-weight: 500;
+ }
+ select {
+ font-optical-sizing: auto;
+ font-style: normal;
+ width: 30vw;
+ background-color: rgba(255, 255, 255, 0.2);
+ border: none;
+ border-bottom: 1px solid #ffffff;
+ padding: 8px 0 5px 0;
+ font-size: 1rem;
+ text-align: center;
+ appearance: none;
+ margin-top: 0.4em;
+ margin-bottom: 0.4em;
+ -webkit-appearance: none;
+ -moz-appearance: none;
+ }
+
+ button {
+ font-family: "Montserrat", sans-serif;
+ font-optical-sizing: auto;
+ font-weight: 800;
+ font-style: normal;
+ width: 13vw;
+ padding: 12px 15px;
+ background-color: #FF69B4;
+ color: #fff;
+ border: none;
+ border-radius: 5px;
+ font-weight: bold;
+ font-size: 17px;
+ cursor: pointer;
+ margin: 1.5rem;
+ }
+
+ #container-filho{
+ display:flex;
+ flex-direction: column;
+ justify-content:center;
+ align-items: center;
+ }
+
+ #btn-voltar{
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{'/editar-chamado/' + ${ticket.ticketId}}" method="post" th:object="${ticket}">
+        <h1>Editar Chamado</h1>
+        <label>Número do chamado: <span th:text="${ticket.ticketId}"></span></label><br>
+        <label>Descrição: <span th:text="${ticket.description}"></span></label><br>
+        <label>Departamento: <span th:text="${ticket.department}"></span></label><br>
+        <label>Cliente: <span th:text="${ticket.client.name}"></span></label><br>
+        <label>Data de Abertura: <span
+                th:text="${#dates.format(ticket.creationTimestamp, 'dd/MM/yyyy HH:mm:ss')}"></span></label><br>
+        <label>Última Atualização: <span
+                th:text="${#dates.format(ticket.updatedTimestamp, 'dd/MM/yyyy HH:mm:ss')}"></span></label><br>
+        <label>Técnico Responsável: <span th:text="${name}"></span></label><br>
+        <label>Status Anterior: <span th:text="${ticket.status.description}"></span></label><br>
+        <label>Prioridade Anterior: <span th:text="${ticket.getPriority()}"></span></label><br>
+        <div id="container-filho">
+            <label for="status">Novo Status:</label>
+            <select id="status" name="status">
+                <option value="OPEN">Aguardando técnico</option>
+                <option value="IN_PROGRESS">Em atendimento</option>
+                <option value="FORWARDED">Escalado para outro setor</option>
+                <option value="CLOSED">Finalizado</option>
+            </select>
+            <label for="priority">Nova Prioridade:</label>
+            <select id="priority" name="priority">
+                <option value="BAIXA">Baixa</option>
+                <option value="MEDIA">Média</option>
+                <option value="ALTA">Alta</option>
+            </select>
+            <div>
+                <button type="submit">Atualizar</button>
+                <form action="/dashboard-tecnico" method="get">
+                    <button type="submit">Voltar</button>
+                </form>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>
