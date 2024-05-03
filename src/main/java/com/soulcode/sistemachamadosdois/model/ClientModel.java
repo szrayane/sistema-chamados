@@ -1,5 +1,4 @@
 package com.soulcode.sistemachamadosdois.model;
-
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import lombok.*;
@@ -12,7 +11,7 @@ import lombok.*;
 @ToString
 
 @Entity
-@DiscriminatorValue("client") // Definindo o valor discriminador para esta classe
+@DiscriminatorValue("client")
 public class ClientModel extends UserModel {
 
     private String endereco;
